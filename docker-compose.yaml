@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - proxy
+
+  web-blue:
+    image: fabricioveronez/web-page:blue
+    networks:
+      - proxy
+
+  web-green:
+    image: fabricioveronez/web-page:green
+    networks:
+      - proxy
+
+  web-blue-01:
+    image: fabricioveronez/web-page:blue
+    networks:
+      - proxy
+
+  web-green-01:
+    image: fabricioveronez/web-page:green
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    driver: bridge
